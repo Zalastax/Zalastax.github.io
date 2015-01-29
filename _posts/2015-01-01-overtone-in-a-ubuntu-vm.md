@@ -11,9 +11,9 @@ Download and install VirtualBox for your host system from [the VirtualBox downlo
 
 I had some screen artifacts during the installation. [StackOverflow helped me](http://askubuntu.com/questions/541006/ubuntu-14-10-does-not-install-in-virtualbox) and I fixed the issue by hitting <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F1</kbd> and then <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F7</kbd>.
 
-Fixing screen resolution and copy-paste
----------------------------------------
-The VM in it's current state will not detect if you resize the VM window and the previously enabled copy-paste between host and guest will not work either. [StackOverflow helped me again](http://askubuntu.com/questions/452108/cannot-change-screen-size-from-640x480-after-14-04-installation-on-virtualbox-os) and I found at that to fix this we need to install the VirtualBox Guest Additions.  
+Fixing screen resolution and clipboard
+--------------------------------------
+The VM in it's current state will not detect if you resize the VM window and the previously enabled shared clipboard will not work either. [StackOverflow helped me again](http://askubuntu.com/questions/452108/cannot-change-screen-size-from-640x480-after-14-04-installation-on-virtualbox-os) and I found at that to fix this we need to install the VirtualBox Guest Additions.  
 Run the following command in a terminal:
 
     sudo apt-get install virtualbox-guest-dkms
