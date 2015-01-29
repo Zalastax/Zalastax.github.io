@@ -13,10 +13,10 @@ Getting Ubuntu up and running in VirtualBox
 Download and install VirtualBox for your host system from [the VirtualBox download page](https://www.virtualbox.org/wiki/Downloads).  
 Create a new VM (virtual machine).  
 By naming it Ubuntu, VirtualBox will select the type and version as Linux Ubuntu for you.  
-After the VM is created select it from the list and press <kbd>Settings</kbd>.  
-Enable shared clipboard by going to <kbd>General-></kbd><kbd>Advanced-></kbd><kbd>Shared Clipboard</kbd> and change it to Bidirectional.  
-It's a good idea to go to <kbd>Display-></kbd><kbd>Video</kbd> and increase the dedicated Video memory and enabling 3D acceleration.  
-The VM is now ready for performing installation by selecting your Ubuntu ISO.  
+After the VM is created select it from the list and press Settings.  
+Enable shared clipboard by going to <code>General->Advanced->Shared Clipboard</code> and change it to Bidirectional.  
+It's a good idea to go to <code>Display->Video</code> and increase the dedicated Video memory and enabling 3D acceleration.  
+The VM is now ready for performing installation by pressing Start and selecting your Ubuntu ISO. Complete the installation.  
 I had some screen artifacts during the installation. [StackOverflow helped me](http://askubuntu.com/questions/541006/ubuntu-14-10-does-not-install-in-virtualbox) and I fixed the issue by hitting <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F1</kbd> and then <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F7</kbd>.
 
 Fixing screen resolution and copy-paste
@@ -37,9 +37,7 @@ Run the following command in a terminal:
     sudo apt-get install supercollider openjdk-8-jdk qjackctl pulseaudio-module-jack
 Integrating PulseAudio with JACK
 --------------------------------
-If you are fine with having to start JACK on every boot you don't need to perform the following steps.  
-The default configuration of PulseAudio yields control of the audio equipment to JACK when the JACK server starts.  
-PulseAudio will not be able to receive input or send output of any audio signals on the audio interface used by JACK.  
+If you are fine with having to start JACK on every boot you don't need to perform the following steps. The default configuration of PulseAudio yields control of the audio equipment to JACK when the JACK server starts. PulseAudio will not be able to receive input or send output of any audio signals on the audio interface used by JACK.  
 I find it a bit tedious to start JACK using QjackCtl and found a solution on [the Fedora Project website](http://docs.fedoraproject.org/en-US/Fedora/15/html/Musicians_Guide/sect-Musicians_Guide-Integrating_PulseAudio_with_JACK.html).  
 ### PulseAudio configuration
 You'll need to edit the PulseAudio configuration file to use the JACK module.  
@@ -56,7 +54,7 @@ Restart PulseAudio by running the following command in a terminal:
     killall pulseaudio
 PulseAudio restarts automatically.  
 Confirm that this has worked by opening QjackCtl. The display should confirm that JACK is "Active".  
-Uncheck Setup...->Misc->Stop JACK audio server on application exit. Otherwise QjackCtl will kill JACK when you close it and all sound will be gone.
+<code>Uncheck Setup...->Misc->Stop JACK audio server on application exit</code>. Otherwise QjackCtl will kill JACK when you close it and all sound will be gone.
 Leiningen
 ---------
 Leiningen is the project manager used by clojure.  
@@ -101,11 +99,11 @@ The installtion wizard will help you with creating a desktop entry.
 Now it's time to install the Cursive plugin.  
 Follow the installation guide from [the cursive plugin userguide](https://cursiveclojure.com/userguide/).  
 I have written out the steps I used below (for IntelliJ 14):  
-To install the plugin, open the IntelliJ Settings, then select <kbd>Plugins-></kbd><kbd>Browse Repositories-></kbd><kbd>Manage Repositories</kbd>.  
+To install the plugin, open the IntelliJ Settings, then select <code>Plugins->Browse Repositories->Manage Repositories</code>.  
 Add a repository with the url:
 
     http://cursiveclojure.com/plugins-14.xml
-Return to Browse Repositories, then in the <kbd>Repository:</kbd> dropdown select the new repo.  
+Return to Browse Repositories, then in the Repository: dropdown select the new repo.  
 You should see a plugin called cursive-0.1.xx (where xx is some version number).  
 Install it using the install button, then close the Browse Repositories window and the Settings window.  
 Restart IntelliJ when it prompts you to.
@@ -113,8 +111,8 @@ Restart IntelliJ when it prompts you to.
 Hack away!
 ==========
 The setup is now done and it's time to start making some music.  
-In IntelliJ select <kbd>Import project</kbd> and select the project we created earlier.  
-Select <kbd>Import project from external model</kbd>, and then <kbd>Leiningen</kbd>.  
+In IntelliJ select Import project and select the project we created earlier.  
+Select Import project from external model, and then Leiningen.  
 Press Next a few times until it's time to select a project SDK.  
 Since this is our first run we need to add a new JDK.
 Press the plus and then JDK.
@@ -145,10 +143,10 @@ Open the `src/tutorial/core.clj` file and modify it to:
 We need to start a REPL and load our code.
 Right click the project and press Run 'REPL for tutorial'.
 Wait for the REPL to start.
-To load our code have the tutorial.core file opened and focused and click <kbd>Tools-></kbd><kbd>REPL-></kbd><kbd>Load file in REPL</kbd>.
+To load our code have the tutorial.core file opened and focused and click <code>Tools->REPL->Load file in REPL</code>.
 
 Wait for the Overtone welcome message.  
-Then to change the REPL namespace to the tutorial.core file we need have it opened and focused and click <kbd>Tools-></kbd><kbd>REPL-></kbd><kbd>Switch REPL NS to current file</kbd>.  
+Then to change the REPL namespace to the tutorial.core file we need have it opened and focused and click <code>Tools->REPL->Switch REPL NS to current file</code>.  
 If it all works, running:
 
     (foo)
