@@ -37,7 +37,7 @@ Run the following command in a terminal:
     sudo apt-get install supercollider openjdk-8-jdk qjackctl pulseaudio-module-jack
 Integrating PulseAudio with JACK
 --------------------------------
-If you are fine with having to start JACK on every boot you don't need to perform the following steps. The default configuration of PulseAudio yields control of the audio equipment to JACK when the JACK server starts. PulseAudio will not be able to receive input or send output of any audio signals on the audio interface used by JACK.  
+If you are fine with having to start JACK on every boot you don't need to perform the following steps. The default configuration of PulseAudio yields control of the audio equipment to JACK when the JACK server starts. But PulseAudio will not be able to receive input or send output of any audio signals on the audio interface used by JACK by default.
 I find it a bit tedious to start JACK using QjackCtl and found a solution on [the Fedora Project website](http://docs.fedoraproject.org/en-US/Fedora/15/html/Musicians_Guide/sect-Musicians_Guide-Integrating_PulseAudio_with_JACK.html).  
 ### PulseAudio configuration
 You'll need to edit the PulseAudio configuration file to use the JACK module.  
