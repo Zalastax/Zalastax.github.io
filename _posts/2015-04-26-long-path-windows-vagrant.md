@@ -33,11 +33,14 @@ Vagrant.configure("2") do |config|
         v.memory = MAX_MEMORY
 
         if Vagrant::Util::Platform.windows?
-            v.customize ["sharedfolder", "add", :id, "--name", SHARED_FOLDER_NAME, "--hostpath", (("//?/" + File.dirname(__FILE__) + SHARED_FOLDER_WINDOWS_RELATIVE_PATH ).gsub("/","\\"))]
+            v.customize ["sharedfolder", "add", :id, "--name", SHARED_FOLDER_NAME,
+                "--hostpath", (("//?/" + File.dirname(__FILE__) + SHARED_FOLDER_WINDOWS_RELATIVE_PATH ).gsub("/","\\"))]
             v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/"+SHARED_FOLDER_NAME, "1"]
             
             override.vm.provision :shell, inline: "mkdir -p " + SHARED_FOLDER_LINUX_PATH
-            override.vm.provision :shell, inline: "mount -t vboxsf -o uid=`id -u vagrant`,gid=`getent group vagrant | cut -d: -f3` " + SHARED_FOLDER_NAME + " " + SHARED_FOLDER_LINUX_PATH, run: "always"
+            override.vm.provision :shell,
+                inline: "mount -t vboxsf -o uid=`id -u vagrant`,gid=`getent group vagrant | cut -d: -f3` "
+                + SHARED_FOLDER_NAME + " " + SHARED_FOLDER_LINUX_PATH, run: "always"
         end
     end
 end
