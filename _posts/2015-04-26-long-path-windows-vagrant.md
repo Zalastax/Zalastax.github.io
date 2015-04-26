@@ -5,10 +5,10 @@ title: Long file path in VirtualBox on Windows using Vagrant
 
 Windows by default limits the path length to 260 characters.
 This became a problem for me when I shared a folder from VirtualBox containing a node_modules folder.
-Nested dependencies can create some long paths ([a well known problem](https://github.com/joyent/node/issues/6960)) and we weren''t willing to use any workarounds in the code since using Vagrant should already abstract the developers OS away.
-I found a solution in [issue#1953](https://github.com/mitchellh/vagrant/issues/1953) in the Vagrant repository.
+Nested dependencies can create some long paths ([a well known problem](https://github.com/joyent/node/issues/6960)) and we weren't willing to use any workarounds in the code since using Vagrant should already abstract the developers OS away.
+I found a solution in [issue#1953](https://github.com/mitchellh/vagrant/issues/1953) at the Vagrant repository.
 
-So here is a vagrant file using the fix on Windows:
+Inspired by the solution I created a config that uses variables to be a bit more clear:
 
 ```ruby
 # -*- mode: ruby -*-
