@@ -16,8 +16,8 @@ Inspired by the solution I created a config that uses variables to be a bit more
 
 VM_HOSTNAME = "long-path-vm"
 SHARED_FOLDER_NAME = "app"
-SHARED_FOLDER_LINUX_PATH = "/home/vagrant/app"
-SHARED_FOLDER_WINDOWS_RELATIVE_PATH = ""
+SHARED_FOLDER_VM_PATH = "/home/vagrant/app"
+SHARED_FOLDER_HOST_RELATIVE_PATH = ""
 MAX_MEMORY = 1024
 
 Vagrant.configure("2") do |config|
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/trusty64"
 
     unless Vagrant::Util::Platform.windows?
-        config.vm.synced_folder ".", SHARED_FOLDER_PATH
+        config.vm.synced_folder "."+, SHARED_FOLDER_VM_PATH
     end
 
     config.vm.provider "virtualbox" do |v, override|
@@ -36,19 +36,19 @@ Vagrant.configure("2") do |config|
             v.customize ["sharedfolder", "add", :id, "--name",
                 SHARED_FOLDER_NAME,
                 "--hostpath",(("//?/" + File.dirname(__FILE__)
-                + SHARED_FOLDER_WINDOWS_RELATIVE_PATH )
+                + SHARED_FOLDER_HOST_RELATIVE_PATH )
                 .gsub("/","\\"))]
             v.customize ["setextradata", :id,
                 "VBoxInternal2/SharedFoldersEnableSymlinksCreate/"
                 +SHARED_FOLDER_NAME, "1"]
             
             override.vm.provision :shell, inline: "mkdir -p "
-                + SHARED_FOLDER_LINUX_PATH
+                + SHARED_FOLDER_VM_PATH
             override.vm.provision :shell,
                 inline: "mount -t vboxsf -o uid=`id -u vagrant`"
                 + ",gid=`getent group vagrant | cut -d: -f3` "
                 + SHARED_FOLDER_NAME + " "
-                + SHARED_FOLDER_LINUX_PATH, run: "always"
+                + SHARED_FOLDER_VM_PATH, run: "always"
         end
     end
 end
