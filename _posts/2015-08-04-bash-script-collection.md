@@ -9,3 +9,13 @@ Find your local IP: `ip route get 8.8.8.8 | head -1 | cut -d' ' -f8` [Source](ht
 Size of subfolders: `ls -AF | grep \/ | sed 's/\ /\\\ /g' | xargs du -sh` [Source](http://www.toomanyredirects.com/listing-all-subdirectories-with-file-sizes-in-linux/)  
 
 Kill a users long running MySQL queries: `echo "SHOW FULL PROCESSLIST;" | mysql -uroot -pROOTPASSWORD -h localhost | sed '1d' | cut -f 1,2,6 | awk '{ if ($3 > 5 && $2 == "usertokill") print "KILL " $1}' | mysql -h localhost -u usertokill -pPASSWORD`
+
+Find pid of process:  
+`pgrep java`  
+`ps aux | grep java`
+
+Find working directory for pid:  
+`pwdx 2087`
+
+Find path of process:  
+`ls -l /proc/2098/exe`
