@@ -19,3 +19,6 @@ Find working directory for pid:
 
 Find path of process:  
 `ls -l /proc/2098/exe`
+
+Find the most common IP adress in Nginx access logs:  
+`cut -f 1 -d' ' /var/log/nginx/access.log| sort| uniq -c| sort -n`
